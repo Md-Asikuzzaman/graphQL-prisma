@@ -1,25 +1,17 @@
-import { NextResponse } from "next/server";
 import prisma from "./db";
 
 const resolvers = {
   Query: {
-    users: async () => {
+    getUsers: async () => {
       return await prisma.user.findMany();
     },
   },
+
   Mutation: {
     createUser: async (_: any, { input }: any, context: any) => {
-      console.log(input);
-
-      console.log(context);
-
       try {
         const newUser = await prisma.user.create({
-          data: {
-            user_name: input.user_name,
-            email: input.email,
-            age: input.age,
-          },
+          data: input,
         });
         return newUser;
       } catch (error) {

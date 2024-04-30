@@ -11,9 +11,11 @@ const typeDefs = `#graphql
     email: String!
     age: Int!
   }
+
   type Query {
-    users: [User]
+    getUsers: [User]
   }
+  
   type Mutation {
     createUser(input: NewUserInput!): User
   }
